@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory,createWebHistory, RouteRecordRaw } f
 import App from "../App.vue";
 import RouterTest from "../components/rooterUser/RouterTest.vue";
 import DynamicRouter from '../components/rooterUser/test/DynamicRouter.vue';
+import NotFound from '../components/rooterUser/test/NotFound.vue';
 // 1. 定义路由组件.
 const home = App;
 const routerTest = RouterTest;
@@ -14,6 +15,9 @@ const routes = [
   { path: "/routerTest", component: routerTest },
   //参数动态路由
   { path: "/routerUser/:id", component: DynamicRouter },
+  //捕获所有路由或 404 Not found 路由
+  // 将匹配所有内容并将其放在 `$route.params.pathMatch` 下
+  { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
 ];
 
 // // 3. 创建路由实例并传递 `routes` 配置

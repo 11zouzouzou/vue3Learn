@@ -2,6 +2,7 @@
   <h2>路由测试</h2>
   <button @click="gotoRouterUserId()">跳转userid:{{ userId }}</button>
   <button @click="gotoRouterTypeId()">跳转typeid:{{ typeId }}</button>
+  <button @click="gotoRouter404()">跳转typeid404</button>
 </template>
 
 <script lang="ts">
@@ -22,6 +23,9 @@ export default defineComponent({
      gotoRouterTypeId(id: string) {
       this.$router.push("/routerUser/" + this.typeId);
     },
+    gotoRouter404(){
+      this.$router.push('/tt/ttt');
+    }
   },
 });
 </script>
