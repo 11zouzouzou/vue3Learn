@@ -13,6 +13,7 @@
     </ol>
   </div>
   <ClassStyleRender class="parentClass"></ClassStyleRender>
+  <button  v-on:click="goToDashboard">路由跳转Routertest</button>
 </template>
 
 <script lang="ts">
@@ -39,6 +40,11 @@ export default defineComponent({
       ],
     };
   },
+  methods:{
+     goToDashboard() {
+        this.$router.push('/routerTest')
+    },
+  }
 });
 </script>
 
