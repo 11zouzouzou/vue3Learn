@@ -3,6 +3,7 @@
   <button @click="gotoRouterUserId()">跳转userid:{{ userId }}</button>
   <button @click="gotoRouterTypeId()">跳转typeid:{{ typeId }}</button>
   <button @click="gotoRouter404()">跳转typeid404</button>
+   <button @click="gotoRouterNum()">跳转num:0</button>
 </template>
 
 <script lang="ts">
@@ -17,15 +18,18 @@ export default defineComponent({
     };
   },
   methods: {
-    gotoRouterUserId(id: string) {
+    gotoRouterUserId() {
       this.$router.push("/routerUser/" + this.userId);
     },
-     gotoRouterTypeId(id: string) {
+    gotoRouterTypeId() {
       this.$router.push("/routerUser/" + this.typeId);
     },
-    gotoRouter404(){
-      this.$router.push('/tt/ttt');
-    }
+    gotoRouterNum() {
+      this.$router.push("/routerUser/" + 0);
+    },
+    gotoRouter404() {
+      this.$router.push("/tt/ttt");
+    },
   },
 });
 </script>
