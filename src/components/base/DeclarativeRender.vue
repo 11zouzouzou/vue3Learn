@@ -43,13 +43,22 @@
   <!-- 使用Javascript表达式 -->
   <div v-bind:id="'list-' + id">
     <p>数字+1表达:{{ number + 1 }}</p>
-    <p>三元表达:{{ ok ? "YES" : "NO" }} </p>
-     <p>计算表达:{{ computedFunc }} </p>
+    <p>三元表达:{{ ok ? "YES" : "NO" }}</p>
+    <p>计算表达:{{ computedFunc }}</p>
     <p>函数表达:{{ twoWayBindingmessage.split("").reverse().join("") }}</p>
+  </div>
+  <!-- watcher(侦听器) -->
+  <div id="watch-example">
+    <p>
+      Ask a yes/no question:
+      <input v-model="question" />
+    </p>
+    <p>{{ answer }}</p>
   </div>
 </template>
 <script>
 import { defineComponent } from "vue";
+import * as axios from "axios";//请求
 
 export default defineComponent({
   name: "declarativeRendering",
@@ -73,16 +82,26 @@ export default defineComponent({
       rawHtml: '<span style="color: red">This should be red.</span>',
       number: 1,
       ok: true,
-      id:'textJSFunc'
+      id: "textJSFunc",
+      question: "",
+      answer: "Questions usually contain a question mark. ;-)",
     };
   },
-  computed:{
+  computed: {
     //计算属性只在相关响应式依赖发生改变时它们才会重新求值
     // 计算属性的 getter
     computedFunc() {
       // `this` 指向 vm 实例，存在缓存，只响应改变才会执行
-      return !this.ok ? 'Yes' : 'No'
-    }
+      return !this.ok ? "Yes" : "No";
+    },
+  },
+  watch: {
+    // whenever question changes, this function will run
+    question(newQuestion, oldQuestion) {
+      if (newQuestion.indexOf("?") > -1) {
+        this.getAnswer();
+      }
+    },
   },
   mounted() {
     console.log("生命周期：mounted完成添加el");
@@ -101,6 +120,17 @@ export default defineComponent({
     },
     seenIf() {
       this.seen = !this.seen;
+    },
+    getAnswer() {
+      this.answer = "Thinking...";
+      axios
+        .get("https://yesno.wtf/api")
+        .then((response) => {
+          this.answer = response.data.answer;
+        })
+        .catch((error) => {
+          this.answer = "Error! Could not reach the API. " + error;
+        });
     },
   },
   beforeCreate() {
