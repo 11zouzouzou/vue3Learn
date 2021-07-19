@@ -42,7 +42,7 @@ export default defineComponent({
     },
   },
   data() {
-    console.log("data input");
+    console.log("生命周期:data注入");
     //data
     return {
       counter: 1,
@@ -54,7 +54,7 @@ export default defineComponent({
     };
   },
   mounted() {
-    console.log("mounted start");
+    console.log("生命周期：mounted完成添加el");
     //响应数据演示
     setInterval(() => {
       this.counter++;
@@ -70,6 +70,27 @@ export default defineComponent({
     seenIf() {
       this.seen = !this.seen;
     },
+  },
+  beforeCreate(){
+    console.log('生命周期:beforceCreate(初始化)');
+  },
+  created() {
+    console.log('生命周期：created注入数据完成')
+  },
+  beforeMount(){
+     console.log('生命周期：beforeMount编译完成')
+  },
+  beforeUpdate(){
+    // console.log('生命周期：beforeUpdate响应数据即将变化更新')
+  },
+  updated(){
+    // console.log('生命周期：updated数据更新后')
+  },
+  beforeUnmount(){
+    console.log('生命周期：beforeUnmount即将卸载组件');
+  },
+  unmounted() {
+    console.log('生命周期：unmounted卸载该组件后')
   },
 });
 </script>
