@@ -13,7 +13,7 @@
     </ol>
   </div>
   <ClassStyleRender class="parentClass"></ClassStyleRender>
-  <button  v-on:click="goToDashboard">路由跳转Routertest</button>
+  <RouterUser />
 </template>
 
 <script lang="ts">
@@ -22,6 +22,7 @@ import { defineComponent } from "vue";
 import DeclarativeRender from "./components/base/DeclarativeRender.vue";
 import CompoinentListBuild from "./components/base/CompoinentListBuild.vue";
 import ClassStyleRender from './components/base/ClassStyleRender.vue';
+import RouterUser from './components/rooterUser/RouterUser.vue';
 
 export default defineComponent({
   name: "App",
@@ -29,7 +30,8 @@ export default defineComponent({
     // HelloWorld
     DeclarativeRender,
     CompoinentListBuild,
-    ClassStyleRender
+    ClassStyleRender,
+    RouterUser
   },
   data() {
     return {
@@ -41,9 +43,6 @@ export default defineComponent({
     };
   },
   methods:{
-     goToDashboard() {
-        this.$router.push('/routerTest')
-    },
   }
 });
 </script>

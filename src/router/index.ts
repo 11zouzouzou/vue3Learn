@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory,createWebHistory, RouteRecordRaw } from 'vue-router';
 import App from "../App.vue";
-import RouterTest from "../RouterTest.vue";
+import RouterTest from "../components/rooterUser/RouterTest.vue";
+import DynamicRouter from '../components/rooterUser/test/DynamicRouter.vue';
 // 1. 定义路由组件.
 const home = App;
 const routerTest = RouterTest;
@@ -11,6 +12,8 @@ const routerTest = RouterTest;
 const routes = [
   { path: "/", component: home },
   { path: "/routerTest", component: routerTest },
+  //参数动态路由
+  { path: "/routerUser/:id", component: DynamicRouter },
 ];
 
 // // 3. 创建路由实例并传递 `routes` 配置

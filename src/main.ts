@@ -1,6 +1,6 @@
 import { createApp } from "vue";
 import App from "./App.vue";
-import RouterTest from "./RouterTest.vue";
+import RouterTest from "./components/rooterUser/RouterTest.vue";
 import { router } from './router/index';
 import * as VueRouter from 'vue-router';
 
