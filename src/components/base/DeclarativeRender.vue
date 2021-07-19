@@ -2,7 +2,8 @@
   <div>
     <h3>Base</h3>
     <span>{{ msg }}</span>
-    <div id="counterId">响应数据演示{{ counter }}
+    <div id="counterId">
+      响应数据演示{{ counter }}
       <!-- 不会变化 -->
       <span v-once>非响应式数据演示{{ counter }}</span>
     </div>
@@ -23,6 +24,7 @@
       <span v-if="seen">现在你看到我了</span>
       <button v-on:click="seenIf">v-if显示隐藏</button>
     </div>
+    <!-- 列表渲染 -->
     <div id="list-rendering">
       <ol>
         <li v-for="todo in todos">
@@ -30,6 +32,17 @@
         </li>
       </ol>
     </div>
+    <!-- 原始html -->
+    <div>
+      <p>Using mustaches: {{ rawHtml }}</p>
+      <p>Using v-html directive: <span v-html="rawHtml"></span></p>
+    </div>
+  </div>
+  <!-- 使用Javascript表达式 -->
+  <div v-bind:id="'list-' + id">
+    <p>数字+1表达:{{ number + 1 }}</p>
+    <p>三元表达:{{ ok ? "YES" : "NO" }} </p>
+    <p>函数表达:{{ twoWayBindingmessage.split("").reverse().join("") }}</p>
   </div>
 </template>
 <script>
@@ -54,6 +67,10 @@ export default defineComponent({
       twoWayBindingmessage: "双向绑定",
       seen: true,
       todos: [{ text: "队列1" }, { text: "队列2" }, { text: "队列3" }],
+      rawHtml: '<span style="color: red">This should be red.</span>',
+      number: 1,
+      ok: true,
+      id:'textJSFunc'
     };
   },
   mounted() {
