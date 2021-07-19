@@ -12,6 +12,7 @@
       ></CompoinentListBuild>
     </ol>
   </div>
+  <ClassStyleRender class="parentClass"></ClassStyleRender>
 </template>
 
 <script lang="ts">
@@ -19,6 +20,7 @@ import { defineComponent } from "vue";
 // import HelloWorld from './components/HelloWorld.vue'
 import DeclarativeRender from "./components/base/DeclarativeRender.vue";
 import CompoinentListBuild from "./components/base/CompoinentListBuild.vue";
+import ClassStyleRender from './components/base/ClassStyleRender.vue';
 
 export default defineComponent({
   name: "App",
@@ -26,6 +28,7 @@ export default defineComponent({
     // HelloWorld
     DeclarativeRender,
     CompoinentListBuild,
+    ClassStyleRender
   },
   data() {
     return {
@@ -47,5 +50,8 @@ export default defineComponent({
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.parentClass{
+  color:cornflowerblue
 }
 </style>

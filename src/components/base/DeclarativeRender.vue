@@ -56,9 +56,9 @@
     <p>{{ answer }}</p>
   </div>
 </template>
-<script>
+<script lang='ts'>
 import { defineComponent } from "vue";
-import * as axios from "axios";//请求
+import * as axios from "axios"; //请求
 
 export default defineComponent({
   name: "declarativeRendering",
@@ -68,6 +68,9 @@ export default defineComponent({
       type: String,
       required: true,
     },
+  },
+  setup(){
+    console.log('setUp');
   },
   data() {
     console.log("生命周期:data注入");
@@ -90,7 +93,7 @@ export default defineComponent({
   computed: {
     //计算属性只在相关响应式依赖发生改变时它们才会重新求值
     // 计算属性的 getter
-    computedFunc() {
+    computedFunc():string {
       // `this` 指向 vm 实例，存在缓存，只响应改变才会执行
       return !this.ok ? "Yes" : "No";
     },
@@ -123,12 +126,12 @@ export default defineComponent({
     },
     getAnswer() {
       this.answer = "Thinking...";
-      axios
+      (axios as any)
         .get("https://yesno.wtf/api")
-        .then((response) => {
+        .then((response:any) => {
           this.answer = response.data.answer;
         })
-        .catch((error) => {
+        .catch((error:any) => {
           this.answer = "Error! Could not reach the API. " + error;
         });
     },
