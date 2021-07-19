@@ -8,7 +8,8 @@ export default defineComponent({
   name:'CompoinentListBuild',
   //App 外部传入参数
   props:{
-    todo:Object
+    // TODO 
+    todo:null
   }
 })
 </script>
