@@ -8,12 +8,14 @@
       <span v-once>非响应式数据演示{{ counter }}</span>
     </div>
     <div id="bind-attribute">
+      <!-- 缩写： -->
       <span v-bind:title="dynamicMessage">
         鼠标悬停几秒钟查看此处动态绑定的提示信息！
       </span>
     </div>
     <div id="event-handling">
       <p>{{ eventHandlingMessage }}</p>
+      <!--  v-on:[eventName]可动态处理，缩写@ -->
       <button v-on:click="reverseMessage">反转 EventHandlingMessage</button>
     </div>
     <div id="two-way-binding">
@@ -42,6 +44,7 @@
   <div v-bind:id="'list-' + id">
     <p>数字+1表达:{{ number + 1 }}</p>
     <p>三元表达:{{ ok ? "YES" : "NO" }} </p>
+     <p>计算表达:{{ computedFunc }} </p>
     <p>函数表达:{{ twoWayBindingmessage.split("").reverse().join("") }}</p>
   </div>
 </template>
@@ -72,6 +75,14 @@ export default defineComponent({
       ok: true,
       id:'textJSFunc'
     };
+  },
+  computed:{
+    //计算属性只在相关响应式依赖发生改变时它们才会重新求值
+    // 计算属性的 getter
+    computedFunc() {
+      // `this` 指向 vm 实例，存在缓存，只响应改变才会执行
+      return !this.ok ? 'Yes' : 'No'
+    }
   },
   mounted() {
     console.log("生命周期：mounted完成添加el");
