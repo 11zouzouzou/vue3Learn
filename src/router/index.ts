@@ -41,7 +41,13 @@ const routes:Array<RouteRecordRaw> = [
           nestView: DynamicRouter
         }
       }
-    ]
+    ],
+    alias:'/_r'
+  },
+  //重定向
+  {
+    path: '/_routerUserr',
+    redirect:'/routerUser'
   },
   // //参数动态路由
   // { path: "/routerUser/:id", component: DynamicRouter },

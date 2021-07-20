@@ -3,7 +3,9 @@
   <button @click="gotoRouterUserId()">跳转userid:{{ userId }}</button>
   <button @click="gotoRouterTypeId()">跳转typeid:{{ typeId }}</button>
   <button @click="gotoRouter404()">跳转typeid404</button>
-   <button @click="gotoRouterNum()">跳转num:0</button>
+  <button @click="gotoRouterNum()">跳转num:0</button>
+  <button @click="gotoRedirect()">重定向</button>
+  <button @click="gotoAlias()">别名</button>
    <!-- 多级路由 -->
   <router-view name='nestView'/>
 </template>
@@ -32,6 +34,12 @@ export default defineComponent({
     gotoRouter404() {
       this.$router.push("/tt/ttt");
     },
+    gotoRedirect(){
+      this.$router.push('/_routerUserr');
+    },
+    gotoAlias(){
+      this.$router.push('/_r');
+    }
   },
 });
 </script>
