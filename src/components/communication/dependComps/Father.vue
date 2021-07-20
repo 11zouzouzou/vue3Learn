@@ -44,7 +44,7 @@ export default defineComponent({
     const updateAge = (age: number): void => {
       //子组件调用，更新，父组件监听更新
       userInfo.age = age;
-      console.log('更新年龄');
+      console.log('子组件调用，更新，父组件监听更新');
     }
 
     return {
