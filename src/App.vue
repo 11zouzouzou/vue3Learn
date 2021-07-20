@@ -14,6 +14,10 @@
   </div>
   <ClassStyleRender class="parentClass"></ClassStyleRender>
   <RouterUser />
+  <div>
+    <h2><router-link to="/communication">通信测试</router-link></h2>
+    >
+  </div>
 </template>
 
 <script lang="ts">
@@ -21,8 +25,8 @@ import { defineComponent } from "vue";
 // import HelloWorld from './components/HelloWorld.vue'
 import DeclarativeRender from "./components/base/DeclarativeRender.vue";
 import CompoinentListBuild from "./components/base/CompoinentListBuild.vue";
-import ClassStyleRender from './components/base/ClassStyleRender.vue';
-import RouterUser from './components/rooterUser/RouterUser.vue';
+import ClassStyleRender from "./components/base/ClassStyleRender.vue";
+import RouterUser from "./components/rooterUser/RouterUser.vue";
 
 export default defineComponent({
   name: "App",
@@ -31,7 +35,7 @@ export default defineComponent({
     DeclarativeRender,
     CompoinentListBuild,
     ClassStyleRender,
-    RouterUser
+    RouterUser,
   },
   data() {
     return {
@@ -42,8 +46,7 @@ export default defineComponent({
       ],
     };
   },
-  methods:{
-  }
+  methods: {},
 });
 </script>
 
@@ -56,7 +59,7 @@ export default defineComponent({
   color: #2c3e50;
   margin-top: 60px;
 }
-.parentClass{
-  color:cornflowerblue
+.parentClass {
+  color: cornflowerblue;
 }
 </style>

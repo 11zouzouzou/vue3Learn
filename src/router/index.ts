@@ -9,6 +9,7 @@ import App from "../App.vue";
 // import DynamicRouter from '../components/rooterUser/test/DynamicRouter.vue';
 // import DynamicNumRouter from '../components/rooterUser/test/DynamicNumRouter.vue';
 // import NotFound from '../components/rooterUser/test/NotFound.vue';
+// import Communication from '../components/communication/index.vue';
 // 1. 定义路由组件.
 const home = App;
 // //懒加载
@@ -19,6 +20,7 @@ const DynamicRouter = () =>
 const DynamicNumRouter = () =>
   import("../components/rooterUser/test/DynamicNumRouter.vue");
 const NotFound = () => import("../components/rooterUser/test/NotFound.vue");
+const Communication = () => import("../components/communication/index.vue");
 
 // 2. 定义一些路由
 // 每个路由都需要映射到一个组件。
@@ -28,6 +30,10 @@ const routes: Array<RouteRecordRaw> = [
     path: "/",
     name: "home",
     component: home,
+  },
+  {
+    path: "/communication",
+    component:Communication
   },
   {
     path: "/routerTest",
