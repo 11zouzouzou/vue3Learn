@@ -7,16 +7,23 @@ import App from "../App.vue";
 // 1. 定义路由组件.
 const home = App;
 // //懒加载
-const RouterTest = import(/* webpackChunkName: "about" */'../components/rooterUser/RouterTest.vue');
-const DynamicRouter = import('../components/rooterUser/test/DynamicRouter.vue');
-const DynamicNumRouter = import('../components/rooterUser/test/DynamicNumRouter.vue');
-const NotFound = import('../components/rooterUser/test/NotFound.vue');
+//TODO 相关webpackChunbkName对应vite中的功能
+const RouterTest = () => import("../components/rooterUser/RouterTest.vue");
+const DynamicRouter = () =>
+  import("../components/rooterUser/test/DynamicRouter.vue");
+const DynamicNumRouter = () =>
+  import("../components/rooterUser/test/DynamicNumRouter.vue");
+const NotFound = () => import("../components/rooterUser/test/NotFound.vue");
 
 // 2. 定义一些路由
 // 每个路由都需要映射到一个组件。
 // 我们后面再讨论嵌套路由。
 const routes:Array<RouteRecordRaw> = [
-  { path: "/", component: home },
+  {
+    path: "/",
+    name: "home",
+    component: home
+  },
   { path: "/routerTest", component:RouterTest },
   //多级路由
   {
@@ -29,7 +36,10 @@ const routes:Array<RouteRecordRaw> = [
       // },
       {
         path: ':id',
-        component:DynamicRouter
+        components: {
+          //多嵌套nestView路由
+          nestView: DynamicRouter
+        }
       }
     ]
   },

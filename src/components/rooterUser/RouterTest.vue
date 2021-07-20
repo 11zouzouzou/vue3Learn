@@ -5,7 +5,7 @@
   <button @click="gotoRouter404()">跳转typeid404</button>
    <button @click="gotoRouterNum()">跳转num:0</button>
    <!-- 多级路由 -->
-  <router-view />
+  <router-view name='nestView'/>
 </template>
 
 <script lang="ts">
