@@ -1,4 +1,9 @@
-import { createRouter, createWebHashHistory,createWebHistory, RouteRecordRaw } from 'vue-router';
+import {
+  createRouter,
+  createWebHashHistory,
+  createWebHistory,
+  RouteRecordRaw,
+} from "vue-router";
 import App from "../App.vue";
 // import RouterTest from "../components/rooterUser/RouterTest.vue";
 // import DynamicRouter from '../components/rooterUser/test/DynamicRouter.vue';
@@ -18,46 +23,52 @@ const NotFound = () => import("../components/rooterUser/test/NotFound.vue");
 // 2. 定义一些路由
 // 每个路由都需要映射到一个组件。
 // 我们后面再讨论嵌套路由。
-const routes:Array<RouteRecordRaw> = [
+const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "home",
-    component: home
+    component: home,
   },
-  { path: "/routerTest", component:RouterTest },
+  {
+    path: "/routerTest",
+    component: RouterTest, //元信息，可通过路由动态配置组件
+    meta: {
+      title: "元信息",
+    },
+  },
   //多级路由
   {
-    path: '/routerUser',
-    component:RouterTest,
+    path: "/routerUser",
+    component: RouterTest,
     children: [
       // {
       //   path: ':id(\\d+)',
       //   component:DynamicNumRouter
       // },
       {
-        path: ':id',
+        path: ":id",
         components: {
           //多嵌套nestView路由
-          nestView: DynamicRouter
+          nestView: DynamicRouter,
         },
         //传入组件参数解耦组件与router
-        props:true
-      }
+        props: true,
+      },
     ],
-    alias:'/_r'
+    alias: "/_r",
   },
   //重定向
   {
-    path: '/_routerUserr',
-    redirect:'/routerUser'
+    path: "/_routerUserr",
+    redirect: "/routerUser",
   },
   // //参数动态路由
   // { path: "/routerUser/:id", component: DynamicRouter },
-   // /routerUser/:Id -> 仅匹配数字
-   { path: '/routerUser/:id(\\d+)',component:DynamicNumRouter, props:true },
+  // /routerUser/:Id -> 仅匹配数字
+  { path: "/routerUser/:id(\\d+)", component: DynamicNumRouter, props: true },
   // //捕获所有路由或 404 Not found 路由
   // 将匹配所有内容并将其放在 `$route.params.pathMatch` 下:"/*"
-  { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
+  { path: "/:pathMatch(.*)*", name: "NotFound", component: NotFound },
 ];
 
 // // 3. 创建路由实例并传递 `routes` 配置
