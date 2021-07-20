@@ -1,41 +1,49 @@
 <template>
- <h3>父组件的信息</h3>
+  <h3>父组件的信息</h3>
   <p>用户id：{{ id }}</p>
   <p>用户名：{{ name }}</p>
   <p>年龄：{{ age }}</p>
-<!-- child 无class prop -->
+  <!-- child 无class prop -->
   <Child
-    class="child" 
+    class="child"
     title="用户信息"
     :index="1"
     :uid="id"
     :user-name="name"
     :age="age"
-     @update-age="updateAge"
+    @update-age="updateAge"
   />
 </template>
 <script lang="ts">
-import { defineComponent,ToRefs,toRefs,ref,reactive,provide } from 'vue'
-import Child from './Child.vue'
+import {
+  defineComponent,
+  ToRefs,
+  toRefs,
+  ref,
+  reactive,
+  provide,
+  onBeforeUnmount,
+} from "vue";
+import Child from "./Child.vue";
 
 interface Member {
-  id: number,
-  name: string,
-   age: number
-};
+  id: number;
+  name: string;
+  age: number;
+}
 
 export default defineComponent({
   // 需要启用子组件作为模板
   components: {
-    Child
+    Child,
   },
 
   // 定义一些数据并return给template用
-  setup () {
+  setup() {
     const userInfo: Member = reactive({
       id: 1,
-      name: 'zou',
-      age: 0
+      name: "zou",
+      age: 0,
     });
     const userInfoRefs = toRefs(userInfo);
 
@@ -43,25 +51,25 @@ export default defineComponent({
     const updateAge = (age: number): void => {
       //子组件调用，更新，父组件监听更新
       userInfo.age = age;
-      console.log('子组件调用，更新，父组件监听更新');
-    }
-  
+      console.log("子组件调用，更新，父组件监听更新");
+    };
+
     // 定义好数据
-    const childInfo = reactive({msg:'爷爷在此'});
+    const childInfo = reactive({ msg: "爷爷在此" });
     //传出
-    provide('childInfo', childInfo);
+    provide("childInfo", childInfo);
     //更新
     setTimeout(() => {
-      childInfo.msg = '爷爷在此更新';
+      childInfo.msg = "爷爷在此更新";
     }, 3000);
 
     return {
       ...userInfoRefs,
 
       // return给template用
-      updateAge
-    }
-  }
-})
+      updateAge,
+    };
+  },
+});
 </script>
 

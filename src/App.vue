@@ -16,7 +16,6 @@
   <RouterUser />
   <div>
     <h2><router-link to="/communication">通信测试</router-link></h2>
-    >
   </div>
 </template>
 
