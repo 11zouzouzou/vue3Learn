@@ -2,7 +2,6 @@
  <h3>父组件的信息</h3>
   <p>用户id：{{ id }}</p>
   <p>用户名：{{ name }}</p>
-  <h3>父组件注入的更新方法</h3>
   <p>年龄：{{ age }}</p>
 <!-- child 无class prop -->
   <Child
@@ -16,7 +15,7 @@
   />
 </template>
 <script lang="ts">
-import { defineComponent,ToRefs,toRefs,ref,reactive } from 'vue'
+import { defineComponent,ToRefs,toRefs,ref,reactive,provide } from 'vue'
 import Child from './Child.vue'
 
 interface Member {
@@ -46,6 +45,15 @@ export default defineComponent({
       userInfo.age = age;
       console.log('子组件调用，更新，父组件监听更新');
     }
+  
+    // 定义好数据
+    const childInfo = reactive({msg:'爷爷在此'});
+    //传出
+    provide('childInfo', childInfo);
+    //更新
+    setTimeout(() => {
+      childInfo.msg = '爷爷在此更新';
+    }, 3000);
 
     return {
       ...userInfoRefs,

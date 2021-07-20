@@ -6,11 +6,16 @@
   <p>用户名：{{ userName }}</p>
   <h3>父组件注入的更新方法</h3>
   <p>年龄：{{ age }}</p>
+  <Childs />
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
+import Childs from "./ChildChild.vue";
 
 export default defineComponent({
+  components: {
+    Childs,
+  },
   inheritAttrs: false, //屏蔽自定义属性
   props: {
     // 可选，并提供默认值
@@ -33,7 +38,7 @@ export default defineComponent({
 
     // 默认可选，但允许多种类型
     uid: [Number, String],
-    age: Number
+    age: Number,
   },
   emits: {
     //接收父传入的func
