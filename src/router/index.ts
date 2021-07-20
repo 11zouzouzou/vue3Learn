@@ -39,7 +39,9 @@ const routes:Array<RouteRecordRaw> = [
         components: {
           //多嵌套nestView路由
           nestView: DynamicRouter
-        }
+        },
+        //传入组件参数解耦组件与router
+        props:true
       }
     ],
     alias:'/_r'
@@ -52,7 +54,7 @@ const routes:Array<RouteRecordRaw> = [
   // //参数动态路由
   // { path: "/routerUser/:id", component: DynamicRouter },
    // /routerUser/:Id -> 仅匹配数字
-   { path: '/routerUser/:id(\\d+)',component:DynamicNumRouter },
+   { path: '/routerUser/:id(\\d+)',component:DynamicNumRouter, props:true },
   // //捕获所有路由或 404 Not found 路由
   // 将匹配所有内容并将其放在 `$route.params.pathMatch` 下:"/*"
   { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },

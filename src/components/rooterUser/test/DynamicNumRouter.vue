@@ -1,6 +1,7 @@
 <template>
   <!-- 动态产生 -->
-  <div>dynamicMessageRouterNum:{{ $route.params.id }}</div>
+  <!-- <div>dynamicMessageRouterNum:{{ $route.params.id }}</div> -->
+   <div>dynamicMessageRouterNum:{{ id }}</div>
   <!--组件将会复用不会走 created -->
   <button @click="gotoRouterTypeId">再次跳转typeNum:1</button>
   <button @click="gotoRouterUserId">再次跳转userNum:2</button>
@@ -11,6 +12,7 @@ import { defineComponent } from "vue";
 export default defineComponent({
   name: "DynamicNumRouter",
   setup() {},
+  props:['id'],
   created() {
     console.log("动态组件创建");
     //监听跳转func1
