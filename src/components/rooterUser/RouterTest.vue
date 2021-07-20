@@ -4,6 +4,8 @@
   <button @click="gotoRouterTypeId()">跳转typeid:{{ typeId }}</button>
   <button @click="gotoRouter404()">跳转typeid404</button>
    <button @click="gotoRouterNum()">跳转num:0</button>
+   <!-- 多级路由 -->
+  <router-view />
 </template>
 
 <script lang="ts">
